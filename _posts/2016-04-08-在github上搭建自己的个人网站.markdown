@@ -1,0 +1,37 @@
+---
+layout: post
+title:  "在github上搭建自己的博客或者个人网站"
+date:   2014-12-30 09:00:13
+categories: jekyll update
+permalink: /archivers/教程
+---
+
+
+ 之前有在新浪的SAE上搭建过个人网站，后来发现收费越来越贵，博客功能实现困难，所以想寻找一款免费的个人博客...这篇教程尽量让你在最短时间内建立自己的个人博客，你需要有一些git基础。
+ 
+##  创建一个代码仓库 ##
+
+1. 首先你得有一个github帐号，创建一个代码仓库。
+ ![](http://7xsrj5.com2.z0.glb.qiniucdn.com/16-4-8/78669959.jpg)
+
+2. 打开终端，cd命令进入你想要存放项目的文件夹，使用`git clone https://github.com/davydtz/blog_test.git`命令将你刚刚在github上创建的项目克隆下来，要克隆你自己项目的地址，克隆结束后，这个文件夹是空的。
+![](http://7xsrj5.com2.z0.glb.qiniucdn.com/16-4-8/39462213.jpg)
+ 接下来就要往这个空目录里面放点东西进去了...
+ 
+ 
+##  找一个自己喜欢的jeklly主题 ##
+进入这个网站:[jekyll themes](http://jekyllthemes.org/),这里面有很多的jeklly主题，有些是博客风格，有些是个人网站风格，挑选一个自己喜欢的主题吧。我挑选的是一款"EasyBook"的主题，简单、清爽。
+![](http://7xsrj5.com2.z0.glb.qiniucdn.com/16-4-8/42281270.jpg)
+将看中的主题下载下来，解压，得到一个文件夹，文件夹里大概会有这样一些文件:index.html、_config.yml、_layouts、_posts...等，将这些文件全部复制到你刚刚克隆的那个文件夹，我这边对应的是blog_test文件夹。
+![](http://7xsrj5.com2.z0.glb.qiniucdn.com/16-4-8/3120871.jpg)
+然后打开_config.yml文件，将baseurl后面双引号中的内容替换成"/"+"你的文件夹名称"，也就是你的项目名称。
+![](http://7xsrj5.com2.z0.glb.qiniucdn.com/16-4-8/15119044.jpg)
+到这一步你的博客基本配置完成了，但是要上传到你的github上才能看得到效果。
+
+
+## 将本地仓库推到github上 ##
+
+使用add、commit、push命令将本地仓库的代码推到github上，push命令要特别注意:`git push origin master:gh-pages`,后面的gh-pages是必不可少的。代码推上去之后，在浏览器出入网址`http://davydtz.github.io/blog_test/`(其中的`davydtz`和`blog_test`分别是我的github用户名和代码仓库名，你需要替换成你的对应的名称),即可看到效果。
+![](http://7xsrj5.com2.z0.glb.qiniucdn.com/16-4-8/36680186.jpg)
+刚刚那个简洁清爽的网站分分钟就被你copy过来了
+
