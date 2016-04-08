@@ -7,18 +7,18 @@
 
     {% include header.html %}
 
-    <!-- content start -->
-
     <div class="page-content">
       <div class="wrapper">
-        {{ content }}
+        <div class="col-main">
+          {{ content }}
+        </div>
+        <div class="col-second">
+          {% include sidebar.html %}
+        </div>
       </div>
     </div>
 
-    <!-- content end -->
-
     {% include footer.html %}
-    {% include javascripts.html %}
 
   </body>
 
