@@ -1,12 +1,18 @@
 ---
-title: Hello, My Blog
-layout: default.html
+title: Blog
+layout: page
+subtitle: Hitchhiker's guid to web development
+sitemap:
+  priority: 0.9
 ---
 
-{{ page.title }}
-
-{% for post in site.posts %}
-
-{{ post.date|date_to_string }} <a href='{{ site.baseurl }}{{ post.url }}'>{{ post.title }}</a>
-
-{% endfor %}
+<ul class="list-posts">
+    {% for post in site.posts %}
+        <li class="post-teaser">
+            <a href="{{ post.url | prepend: site.baseurl }}">
+                <span class="post-teaser__title">{{ post.title }}</span>
+                <span class="post-teaser__date">{{ post.date | date: "%d %B %Y" }}</span>
+            </a>
+        </li>
+    {% endfor %}
+</ul>
