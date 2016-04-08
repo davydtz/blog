@@ -1,34 +1,26 @@
 ---
 layout: default
+title: Long Haul
 ---
 
-
-<!-- Start of the section post-loop-->
-<section class="post-loop container-fluid">
-    {% for post in site.posts %}
-    <div class="row single-post">
-        <div>
-            <h1 class="post-title"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
-
-            <div class="post-details">
-                <span>{{ post.date | date: "%b %-d, %Y" }}</span>
-
-            </div>
-
-            <p class="post-excerpt">
-                {{post.excerpt | length: 140 }}
-            </p>
-
-            <a class="post-button pi-big pi-retro pi-flat" href="{{ post.url }}">More</a>
-
-        </div>
-    </div>
-
+<div class="home" id="home">
+  <h1 class="pageTitle">Recent Posts</h1>
+  <ul class="posts noList">
+    {% for post in paginator.posts %}
+      <li>
+        <span class="date">{{ post.date | date: '%B %d, %Y' }}</span>
+        <h3><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+        <p class="description">{% if post.description %}{{ post.description | strip_html | strip_newlines | truncate: 250 }}{% else %}{{ post.content | strip_html | strip_newlines | truncate: 250 }}{% endif %}</p>
+      </li>
     {% endfor %}
-</section>
-
-
-
-
-
-
+  </ul>
+  <!-- Pagination links -->
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="previous button__outline">Newer Posts</a> 
+    {% endif %}
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="next button__outline">Older Posts</a>
+    {% endif %}
+  </div>
+</div>
