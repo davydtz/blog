@@ -1,19 +1,63 @@
-		</section>
-		<!-- Footer -->
-			<footer id="footer">
-				<ul class="icons">
-					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-					<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-					<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-					<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-				</ul>
-				<ul class="copyright">
-					<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					<li> Jekyll Template: <a href="http://cloudcannon.com">Cloud Cannon</a></li>
-				</ul>
-			</footer>
+<section class="footer ">
 
-	</body>
-</html>
+    <div class="row">
+
+        <div class="col-sm-offset-3 col-md-offset-3 col-md-6 text-center">
+            {% if site.github_username %}
+      <span>
+        <a class="header-link" href="https://github.com/{{ site.github_username }}" target="_blank">
+            <i class="fa fa-2x fa-github-square 3x"></i>
+        </a>
+      </span>
+            {% endif %}
+
+
+            {% if site.twitter_username %}
+      <span>
+        <a class="header-link" href="https://twitter.com/{{ site.twitter_username }}" target="_blank">
+            <i class="fa fa-2x fa-twitter 3x"></i>
+        </a>
+      </span>
+            {% endif %}
+
+            {% if site.portfolio_url %}
+      <span>
+        <a class="header-link" href="{{ site.portfolio_url }}"  target="_blank">
+            <i class="fa fa-2x fa-laptop"></i>
+
+        </a>
+      </span>
+            {% endif %}
+
+
+            {% if site.facebook_username %}
+      <span>
+        <a class="header-link" href="https://facebook.com/{{ site.facebook_username }}"  target="_blank">
+            <i class="fa fa-2x fa-facebook-square "></i>
+        </a>
+      </span>
+            {% endif %}
+        </div>
+
+    </div>
+  <div class="row">
+  <div class="col-sm-offset-2 col-sm-5 col-md-offset-5 col-md-6 ">
+    <small><a href="http://www.mahabubislam.com">Mahabub I. </a><sup>&reg </sup>--- powerd by <a href="http://jekyllrb.com/">Jekyll</a></small>
+  </div>
+
+ 
+      <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'prioblog'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+
+
+</section>
