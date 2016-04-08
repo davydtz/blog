@@ -41,7 +41,8 @@ permalink: /archivers/教程
 ![](http://7xsrj5.com2.z0.glb.qiniucdn.com/16-4-8/66519374.jpg)
 网站上显示的博客列表就是读取了这个文件夹的内容显示出来的，所以如果你想发布你自己的博客，你得将编辑好的博客放到这个文件夹里，然后push到github上，你的博客就会被别人看到了。文件名称是有规定的，时间+名称+后缀，例如`2016-04-08-在github上搭建自己的个人网站.markdown`。这个文件夹里可以放`.markdown`格式的文件(markdown的另外一种后缀是`.md`)，或者`.html`格式的文件。另外注意博客的头部要按一定的规则来编写，如图：
 ![](http://7xsrj5.com2.z0.glb.qiniucdn.com/16-4-8/95238418.jpg)
-[markdown基础语法](http://sspai.com/25137),个人很喜欢用markdown来编辑博客。markdown学起来很快，很容易上手。
-将编辑好的博客保存到_posts文件夹里，然后push到github上，即可看到你刚刚编辑好的博客。
+[点这里查看markdown基础语法](http://sspai.com/25137),个人很喜欢用markdown来编辑博客。markdown学起来很快，很容易上手。
+将编辑好的博客保存到_posts文件夹里，然后push到github上，就可以看到你的成果啦。
+![](http://7xsrj5.com2.z0.glb.qiniucdn.com/16-4-8/41630219.jpg)
 
 
