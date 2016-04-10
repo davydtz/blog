@@ -85,27 +85,27 @@ permalink: /iOS-PHPhotoLibrary官方文档翻译
 
 收到改变通知后的更多处理方法，请参考[PHPhotoLibraryChangeObserver Protocol Reference](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibraryChangeObserver_Protocol/index.html#//apple_ref/doc/uid/TP40014405)
 
-###验证授权###
+###  验证授权  ###
 [+ authorizationStatus ](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/clm/PHPhotoLibrary/authorizationStatus)
 
 [+ requestAuthorization: ](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/clm/PHPhotoLibrary/requestAuthorization:)
 
 
-###Shared Photo Library 对象的单例###
+###  Shared Photo Library 对象的单例  ###
 [+ sharedPhotoLibrary ](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/clm/PHPhotoLibrary/sharedPhotoLibrary)
 
 
-###修改图库的方法###
+###  修改图库的方法   ###
 [- performChanges:completionHandler: ](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/performChanges:completionHandler:)
 
 [- performChangesAndWait:error:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/performChangesAndWait:error:)
 
 
-###监听图库变化###
+###  监听图库变化  ###
 [- registerChangeObserver:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/registerChangeObserver:)
 
 [- unregisterChangeObserver:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/unregisterChangeObserver:)
 
 
-###常亮###
+###  常亮  ###
 [PHAuthorizationStatus](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/c/tdef/PHAuthorizationStatus)
