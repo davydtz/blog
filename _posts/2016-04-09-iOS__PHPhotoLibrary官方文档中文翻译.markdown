@@ -37,7 +37,7 @@ permalink: /iOS-PHPhotoLibrary官方文档中文翻译
     
   Use a change block to combine several changes to the photo library into a single atomic update. Listing 1 illustrates using a change block to create an asset from an image and add that asset to an album.
   
-  ** <font size="1" >  Listing 1 <font>  **   Creating an asset and adding it to an album
+  **  Listing 1 **  新建一张图片并把它加到相册里去
 
 	  
 
@@ -60,6 +60,21 @@ permalink: /iOS-PHPhotoLibrary官方文档中文翻译
     }
 
 
+
+>注意：
+> [performChanges:completionHandler:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/performChanges:completionHandler:)和[performChangesAndWait:error:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/performChangesAndWait:error:)里面的方法在调用的时候，系统会弹出警告框请求获取"相册"的使用权限，如果你的app需要一次提交多个改变，请将他们放在这一个block里。
+>
+>
+>  例如，想要一次性的添加好几张照片，你可以在[creationRequestForAssetFromImage:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetChangeRequest_Class/index.html#//apple_ref/occ/clm/PHAssetChangeRequest/creationRequestForAssetFromImage:)方法里创建多个[PHAssetChangeRequest](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetChangeRequest_Class/index.html#//apple_ref/occ/cl/PHAssetChangeRequest)对象。
+>  
+>　For example, to add several new images in one batch, extend the code in Listing 1 to create multiple PHAssetChangeRequest objects using the creationRequestForAssetFromImage: method. To edit the content of multiple existing photos, create multiple PHAssetChangeRequest objects and set the contentEditingOutput property on each to an independent PHContentEditingOutput object.
+
+###  监听 ###
+
+如果想要在相册发生改动的时候收到通知，使用[registerChangeObserver: ](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/registerChangeObserver:)方法来指定一个观察者对象。每当你使用fetch方法去检检索相册时，比如[fetchAssetsWithOptions:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAsset_Class/index.html#//apple_ref/occ/clm/PHAsset/fetchAssetsWithOptions:),Photo会自动注册观察者。fetch方法执行完之后，结果集中的任何对象发生改变，你都会收到通知，包括增加，移除，重新排列等。
+
+
+处理改变的更多细节，请参考[PHPhotoLibraryChangeObserver Protocol Reference](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibraryChangeObserver_Protocol/index.html#//apple_ref/doc/uid/TP40014405)
 
 
 未完待续。。。
