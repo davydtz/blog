@@ -39,18 +39,9 @@ permalink: /iOS-PHPhotoLibrary官方文档中文翻译
   
 <font size="1" > ** Listing 1 **   Creating an asset and adding it to an album</font>
 
-	adasdasd
-	asdasdasd
-	asdasdasd
-	asdasd
-	    asdas
-	    sad
-	  sad
 	  
-	  
-	  
-	  
-	  
+
+
 
     - (void)addNewAssetWithImage:(UIImage *)image toAlbum:(PHAssetCollection *)album
     {
@@ -69,6 +60,7 @@ permalink: /iOS-PHPhotoLibrary官方文档中文翻译
             NSLog(@"Finished adding asset. %@", (success ? @"Success" : error));
         }];
     }
+
 
 
 
