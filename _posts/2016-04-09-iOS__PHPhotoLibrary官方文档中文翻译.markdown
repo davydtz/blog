@@ -41,7 +41,27 @@ permalink: /iOS-PHPhotoLibrary官方文档中文翻译
 
 	  
 
+```
+- (void)addNewAssetWithImage:(UIImage *)image toAlbum:(PHAssetCollection *)album
+{
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        // Request creating an asset from the image.
+        PHAssetChangeRequest *createAssetRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+     
+        // Request editing the album.
+        PHAssetCollectionChangeRequest *albumChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:album];
+     
+        // Get a placeholder for the new asset and add it to the album editing request.
+        PHObjectPlaceholder *assetPlaceholder = [createAssetRequest placeholderForCreatedAsset];
+        [albumChangeRequest addAssets:@[ assetPlaceholder ]];
+     
+    } completionHandler:^(BOOL success, NSError *error) {
+        NSLog(@"Finished adding asset. %@", (success ? @"Success" : error));
+    }];
+}
 
+
+```
 
     - (void)addNewAssetWithImage:(UIImage *)image toAlbum:(PHAssetCollection *)album
     {
