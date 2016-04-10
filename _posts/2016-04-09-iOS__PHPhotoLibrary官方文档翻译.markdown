@@ -14,23 +14,29 @@ permalink: /iOS-PHPhotoLibrary官方文档中文翻译
 | ------------- |:-------------:| -----:|
 | NSObject      | NSObject   |  @import Photos; |iOS8及以后 |
 
-单例类`PHPhotoLibrary`可以获取到用户的照片图库-自带应用"照片"里管理的所有照片，都能获取到，不仅包括存储在本地的照片，甚至可以获取到存储在"iCloud"上的照片。You use this photo library object to perform changes to photo entities—for example, editing asset metadata or content, inserting new assets, or rearranging the members of a collection. (Photo entities are objects that model the items a user works with in the Photos app: instances of the PHAsset, PHAssetCollection, and PHCollectionList classes.) You also use the photo library object to register for messages that Photos sends whenever changes occur to the content or metadata of assets and collections.
+单例类`PHPhotoLibrary`可以获取到用户的照片，自带应用"照片"里管理的所有照片和相册，它都能获取到，不仅包括存储在本地的照片，甚至可以获取到存储在"iCloud"上的照片。你可以用这个对象修改照片，插入新照片，或重新整理相册。(照片实体就是这些类的实例:[PHAsset](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAsset_Class/index.html#//apple_ref/occ/cl/PHAsset),[PHAssetCollection](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetCollection_Class/index.html#//apple_ref/occ/cl/PHAssetCollection),[PHCollectionList](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHCollectionList_Class/index.html#//apple_ref/occ/cl/PHCollectionList))。你也可以用照片库对象注册通知，当相册发生改变时，你可以收到通知。
 
-### 对图片库进行改动 ###
+*  PHAsset：一张照片或一个视屏
+*  PHAssetCollection：一个相册
+*  PHCollectionList：一个文件夹，里面有相册列表
 
 
-照片实体是不可修改的，所以如果你想修改这些照片或者收藏，你需要使用图片库单例来执行一个block，在这个block里，你可以创建一个修改请求。你可以使用这些方法([方法列表](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/doc/uid/TP40014404-CH1-SW2))来创建这种block。当block里面的方法执行完成并且回掉函数也执行完成了，你的修改请求也成功了。
+### 发出修改请求，操作图库 ###
 
 
-这几个可以发送修改请求的类:[PHAssetChangeRequest](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetChangeRequest_Class/index.html#//apple_ref/occ/cl/PHAssetChangeRequest), [PHAssetCollectionChangeRequest](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetCollectionChangeRequest_Class/index.html#//apple_ref/occ/cl/PHAssetCollectionChangeRequest), ,[PHCollectionListChangeRequest](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHCollectionListChangeRequest_Class/index.html#//apple_ref/occ/cl/PHCollectionListChangeRequest)，都对应着一个照片实体类，使用这几个类可以修改对应的相册资源：
+照片实体是不可修改的，所以如果你想修改图库内容，你需要用`[PHPhotoLibrary sharedPhotoLibrary]`单例来执行一个方法，在这个方法里自带block参数，你要做的就是在这个block里执行对图库的修改操作。具体方法的使用在这里([方法列表](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/doc/uid/TP40014404-CH1-SW2))。当Photos运行完block中的修改时，你的修改就生效了，接下来会调用回调函数。
 
-*   ** 添加新对象 ** 。每一个改变请求类都提供方法来创建其对应的实体。比如，使用[creationRequestForAssetCollectionWithTitle:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetCollectionChangeRequest_Class/index.html#//apple_ref/occ/clm/PHAssetCollectionChangeRequest/creationRequestForAssetCollectionWithTitle:)方法可以创建一个新的相册。
 
-      如果你想获取到刚刚在block中创建的请求-比如，向相册里添加了一张照片-你可以使用这个请求提供的[PHObjectPlaceholder](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHObjectPlaceholder_Class/index.html#//apple_ref/occ/cl/PHObjectPlaceholder)类。当block完成后，使用placeholder类的[localIdentifier](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHObject_Class/index.html#//apple_ref/occ/instp/PHObject/localIdentifier)属性来获取到这个刚刚创建的类。
+这几个可以发送修改请求的类:[PHAssetChangeRequest](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetChangeRequest_Class/index.html#//apple_ref/occ/cl/PHAssetChangeRequest)(操作相片或视频), [PHAssetCollectionChangeRequest](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetCollectionChangeRequest_Class/index.html#//apple_ref/occ/cl/PHAssetCollectionChangeRequest)(操作相册) ,[PHCollectionListChangeRequest](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHCollectionListChangeRequest_Class/index.html#//apple_ref/occ/cl/PHCollectionListChangeRequest)(操作文件夹，文件夹里有相册列表)，都对应着一个照片实体类，使用这几个类可以修改对应的相册资源：
 
-*  ** 删除对象。 **  每一个请求类都提供了对应的删除方法来删除对应的资源。比如，使用[deleteCollectionLists:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHCollectionListChangeRequest_Class/index.html#//apple_ref/occ/clm/PHCollectionListChangeRequest/deleteCollectionLists:)方法删除相册文件夹。
+*   ** 添加新对象 ** 。`PHAssetChangeRequest`可以调用方法:[creationRequestForAssetFromImage: :](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetChangeRequest_Class/index.html#//apple_ref/occ/clm/PHAssetChangeRequest/creationRequestForAssetFromImage:)来创建一个新的照片或视频；`PHAssetCollectionChangeRequest`可以调用方法:[creationRequestForAssetCollectionWithTitle: ](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetCollectionChangeRequest_Class/index.html#//apple_ref/occ/clm/PHAssetCollectionChangeRequest/creationRequestForAssetCollectionWithTitle:)来创建一个新的相册;`PHCollectionListChangeRequest`可以调用方法:[creationRequestForCollectionListWithTitle:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHCollectionListChangeRequest_Class/index.html#//apple_ref/occ/clm/PHCollectionListChangeRequest/creationRequestForCollectionListWithTitle:)来创建一个文件夹。
 
-*  **  修改对象。 **  你可以修改创建对应的对象实体来修改相片或者相册。比如，你可以使用[changeRequestForAsset:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetChangeRequest_Class/index.html#//apple_ref/occ/clm/PHAssetChangeRequest/changeRequestForAsset:)方法来修改某一张照片。
+
+	  如果你想获得刚刚新建的对象，请使用[PHObjectPlaceholder](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHObjectPlaceholder_Class/index.html#//apple_ref/occ/cl/PHObjectPlaceholder)类。当block完成后，使用placeholder类的[localIdentifier](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHObject_Class/index.html#//apple_ref/occ/instp/PHObject/localIdentifier)属性来获取到这个刚刚创建的类。具体用法请参阅它的文档。
+
+*  ** 删除对象。 **  每一个请求类都提供了对应的删除方法来删除对应的资源。比如，`PHAssetCollectionChangeRequest`调用[deleteCollectionLists:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHCollectionListChangeRequest_Class/index.html#//apple_ref/occ/clm/PHCollectionListChangeRequest/deleteCollectionLists:)方法可以删除相册文件夹。
+
+*  **  修改对象。 **  你可以用对应的类来修改相片或者相册。比如，你可以使用`PHAssetChangeRequest`的[changeRequestForAsset:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetChangeRequest_Class/index.html#//apple_ref/occ/clm/PHAssetChangeRequest/changeRequestForAsset:)方法来修改某一张照片的属性，比如是否被收藏。
     
     执行完修改请求之后，使用它的属性或者实例方法来修改对应相册和相片的特点。比如，要设置一张照片的[favorite](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAsset_Class/index.html#//apple_ref/occ/instp/PHAsset/favorite)属性，你可以设置那张照片的改变请求的[favorite](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAsset_Class/index.html#//apple_ref/occ/instp/PHAsset/favorite)属性。要添加一个相册，用相册的改变请求调用 addAssets:方法。
     
