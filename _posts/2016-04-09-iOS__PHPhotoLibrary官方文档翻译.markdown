@@ -107,5 +107,5 @@ permalink: /iOS-PHPhotoLibrary官方文档翻译
 [- unregisterChangeObserver:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/unregisterChangeObserver:)
 
 
-###  常亮  ###
+###  常量  ###
 [PHAuthorizationStatus](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/c/tdef/PHAuthorizationStatus)
