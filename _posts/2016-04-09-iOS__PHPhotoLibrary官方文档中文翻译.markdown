@@ -37,7 +37,7 @@ permalink: /iOS-PHPhotoLibrary官方文档中文翻译
     
   Use a change block to combine several changes to the photo library into a single atomic update. Listing 1 illustrates using a change block to create an asset from an image and add that asset to an album.
   
-** <font size="1" >  Listing 1 <font> **   Creating an asset and adding it to an album
+  ** <font size="1" >  Listing 1 <font>  **   Creating an asset and adding it to an album
 
 	  
 
