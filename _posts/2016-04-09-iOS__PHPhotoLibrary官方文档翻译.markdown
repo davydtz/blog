@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "iOS-PHPhotoLibrary官方文档中文翻译"
+title:  "iOS-PHPhotoLibrary官方文档翻译"
 date:   2014-12-30 09:00:13
 categories: github
-permalink: /iOS-PHPhotoLibrary官方文档中文翻译
+permalink: /iOS-PHPhotoLibrary官方文档翻译
 ---
 
 [官方文档](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html)
@@ -38,14 +38,16 @@ permalink: /iOS-PHPhotoLibrary官方文档中文翻译
 
 *  **修改对象**  你可以用对应的类来修改相片或者相册。比如，你可以使用`PHAssetChangeRequest`的[changeRequestForAsset:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetChangeRequest_Class/index.html#//apple_ref/occ/clm/PHAssetChangeRequest/changeRequestForAsset:)方法来修改某一张照片的属性，比如是否被收藏。
     
-    执行完修改请求之后，使用它的属性或者实例方法来修改对应相册和相片的特点。比如，要设置一张照片的[favorite](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAsset_Class/index.html#//apple_ref/occ/instp/PHAsset/favorite)属性，你可以设置那张照片的改变请求的[favorite](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAsset_Class/index.html#//apple_ref/occ/instp/PHAsset/favorite)属性。要添加一个相册，用相册的改变请求调用 addAssets:方法。
-    
-    
-    
-    
-  Use a change block to combine several changes to the photo library into a single atomic update. Listing 1 illustrates using a change block to create an asset from an image and add that asset to an album.
+    比如你可以这样修改一张图片的收藏属性：
+	
+	
+	    PHAssetChangeRequest *request = [PHAssetChangeRequest changeRequestForAsset:self.asset];
+        [request setFavorite:![self.asset isFavorite]];
+        
   
-  **  Listing 1 **  新建一张图片并把它加到相册里去
+    
+  将好几个对相册的操作放到block中进行原子性操作，下面的例子展示了在block中新建一张照片并将其放到相册中去:
+  
 
 	  
 
@@ -74,13 +76,36 @@ permalink: /iOS-PHPhotoLibrary官方文档中文翻译
 >
 >
 >  例如，想要一次性的添加好几张照片，你可以在[creationRequestForAssetFromImage:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetChangeRequest_Class/index.html#//apple_ref/occ/clm/PHAssetChangeRequest/creationRequestForAssetFromImage:)方法里创建多个[PHAssetChangeRequest](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAssetChangeRequest_Class/index.html#//apple_ref/occ/cl/PHAssetChangeRequest)对象。
->  
->　For example, to add several new images in one batch, extend the code in Listing 1 to create multiple PHAssetChangeRequest objects using the creationRequestForAssetFromImage: method. To edit the content of multiple existing photos, create multiple PHAssetChangeRequest objects and set the contentEditingOutput property on each to an independent PHContentEditingOutput object.
+
 
 ###  监听 ###
 
 如果想要在相册发生改动的时候收到通知，使用[registerChangeObserver: ](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/registerChangeObserver:)方法来指定一个观察者对象。每当你使用fetch方法去检检索相册时，比如[fetchAssetsWithOptions:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHAsset_Class/index.html#//apple_ref/occ/clm/PHAsset/fetchAssetsWithOptions:),Photo会自动注册观察者。fetch方法执行完之后，结果集中的任何对象发生改变，你都会收到通知，包括增加，移除，重新排列等。
 
 
-处理改变的更多细节，请参考[PHPhotoLibraryChangeObserver Protocol Reference](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibraryChangeObserver_Protocol/index.html#//apple_ref/doc/uid/TP40014405)
+收到改变通知后的更多处理方法，请参考[PHPhotoLibraryChangeObserver Protocol Reference](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibraryChangeObserver_Protocol/index.html#//apple_ref/doc/uid/TP40014405)
 
+###验证授权###
+[+ authorizationStatus ](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/clm/PHPhotoLibrary/authorizationStatus)
+
+[+ requestAuthorization: ](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/clm/PHPhotoLibrary/requestAuthorization:)
+
+
+###Shared Photo Library 对象的单例###
+[+ sharedPhotoLibrary ](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/clm/PHPhotoLibrary/sharedPhotoLibrary)
+
+
+###修改图库的方法###
+[- performChanges:completionHandler: ](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/performChanges:completionHandler:)
+
+[- performChangesAndWait:error:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/performChangesAndWait:error:)
+
+
+###监听图库变化###
+[- registerChangeObserver:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/registerChangeObserver:)
+
+[- unregisterChangeObserver:](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/occ/instm/PHPhotoLibrary/unregisterChangeObserver:)
+
+
+###常亮###
+[PHAuthorizationStatus](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html#//apple_ref/c/tdef/PHAuthorizationStatus)
