@@ -37,35 +37,38 @@ permalink: /iOS-PHPhotoLibrary官方文档中文翻译
     
   Use a change block to combine several changes to the photo library into a single atomic update. Listing 1 illustrates using a change block to create an asset from an image and add that asset to an album.
   
-<font size="1" >** Listing 1 **  Creating an asset and adding it to an album</font>
+<font size="1" > ** Listing 1 **   Creating an asset and adding it to an album</font>
 
-```ruby
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-```
+	adasdasd
+	asdasdasd
+	asdasdasd
+	asdasd
+	    asdas
+	    sad
+	  sad
+	  
+	  
+	  
+	  
+	  
 
-```ruby
-- (void)addNewAssetWithImage:(UIImage *)image toAlbum:(PHAssetCollection *)album
+    - (void)addNewAssetWithImage:(UIImage *)image toAlbum:(PHAssetCollection *)album
     {
         [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
             // Request creating an asset from the image.
             PHAssetChangeRequest *createAssetRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
      
-  // Request editing the album.
+            // Request editing the album.
             PHAssetCollectionChangeRequest *albumChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:album];
      
-  // Get a placeholder for the new asset and add it to the album editing request.
+            // Get a placeholder for the new asset and add it to the album editing request.
             PHObjectPlaceholder *assetPlaceholder = [createAssetRequest placeholderForCreatedAsset];
             [albumChangeRequest addAssets:@[ assetPlaceholder ]];
      
-   } completionHandler:^(BOOL success, NSError *error) {
+        } completionHandler:^(BOOL success, NSError *error) {
             NSLog(@"Finished adding asset. %@", (success ? @"Success" : error));
         }];
     }
-```
 
 
 
