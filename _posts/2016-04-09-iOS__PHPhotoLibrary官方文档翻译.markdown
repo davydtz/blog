@@ -6,7 +6,9 @@ categories: github
 permalink: /iOS-PHPhotoLibrary官方文档中文翻译
 ---
 
-[官方文档地址](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html)
+[官方文档](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibrary_Class/index.html)
+
+[官方DEMO下载](https://developer.apple.com/library/ios/samplecode/UsingPhotosFramework/Listings/SamplePhotosApp_main_m.html#//apple_ref/doc/uid/TP40014575-SamplePhotosApp_main_m-DontLinkElementID_21)
 
 | 继承自       | 遵循           |  导入  | 获取  |
 | ------------- |:-------------:| -----:|
@@ -76,5 +78,3 @@ permalink: /iOS-PHPhotoLibrary官方文档中文翻译
 
 处理改变的更多细节，请参考[PHPhotoLibraryChangeObserver Protocol Reference](https://developer.apple.com/library/ios/documentation/Photos/Reference/PHPhotoLibraryChangeObserver_Protocol/index.html#//apple_ref/doc/uid/TP40014405)
 
-
-未完待续。。。
