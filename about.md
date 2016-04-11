@@ -98,7 +98,7 @@ public: true
 
 
 
-##### 3.[优创会(iOS)](http://davydtz.sinaapp.com/utronDetail.html) #####
+##### 3.[优创会(iOS)详情](http://davydtz.sinaapp.com/utronDetail.html) #####
 
 
 
@@ -124,7 +124,7 @@ public: true
 
 
 
-##### 4.[单片机交流网站(PHP)](http://davydtz.sinaapp.com/scmDetail.html) #####
+##### 4.[单片机交流网站(PHP)详情](http://davydtz.sinaapp.com/scmDetail.html) #####
 
 <!--  简介: 这是我的毕业设计项目，导师让我做一个网站，于是我就学习PHP做了这个网站，总共大概花了两个多月，从学习PHP语言到网站完成。
 >    
