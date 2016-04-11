@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 戴伟的简历
+title: 简历
 permalink: /about/
 public: true
 ---
