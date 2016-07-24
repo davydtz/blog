@@ -1,0 +1,510 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>1.</title>
+
+</head>
+<body>
+<hr />
+
+<h5>1.</h5>
+
+<p>接口:friend/query</p>
+
+<p>参数:</p>
+
+<pre><code>{
+   uid = 1;
+}
+</code></pre>
+
+<p>返回值:</p>
+
+<pre><code>{
+code = 1000;
+data =     (
+            {
+        "f_gid" = null;
+        "f_uid" = 2;
+        "forward_number" = 100;
+        "goods_number" = 200;
+        headimgurl = "\U5934\U50cf";
+        id = 30;
+        "nick_name" = "\U6635\U79f0\U6635\U79f0\U6635\U79f0";
+        uid = 1;
+    },
+            {
+        "f_gid" = null;
+        "f_uid" = 2;
+        "forward_number" = 100;
+        "goods_number" = 200;
+        headimgurl = "\U5934\U50cf";
+        id = 31;
+        "nick_name" = "\U6635\U79f0\U6635\U79f0\U6635\U79f0";
+        uid = 1;
+    },
+            {
+        "f_gid" = null;
+        "f_uid" = 2;
+        "forward_number" = 100;
+        "goods_number" = 200;
+        headimgurl = "\U5934\U50cf";
+        id = 32;
+        "nick_name" = "\U6635\U79f0\U6635\U79f0\U6635\U79f0";
+        uid = 1;
+    }
+);
+message = "\U6210\U529f";
+}
+</code></pre>
+
+<p>问题:</p>
+
+<p>返回的3条数据都是一样的，headimgurl值错误</p>
+
+<hr />
+
+<h5>2.</h5>
+
+<p>接口：friend/query/detail</p>
+
+<ul>
+<li>第一种情况</li>
+</ul>
+
+
+<p>参数:</p>
+
+<pre><code>{
+  "f_uid" = 2;
+   uid = 1;
+}
+</code></pre>
+
+<p>返回值:</p>
+
+<pre><code>{
+    code = 1000;
+    data =     {
+        goods =         {
+            addTime = 1469290887000;
+            forwardTimes = 0;
+            goodsDesc = "\U5475\U5475\U54c8";
+            goodsId = 1;
+            goodsName = ios;
+            goodsState = 1;
+            headImgurl = "http://wx.qlogo.cn/mmopen/UH5FTuNesVNnMxWIrcLJKya9ibyArtEv3GqO3SfQPcbECibjJRcSJfHaaT6hqyOibibFvwCDJK6KTZZCBbJXUwEsxRwkp3bRJFAy/0";
+            id = 1;
+            isNewRecord = 0;
+            nickname = "will-\U4e07\U6210";
+            price0 = 0;
+            price1 = 0;
+            price2 = 0;
+            price3 = 0;
+            price4 = 0;
+            price5 = 0;
+            price6 = 0;
+            salePrice = 0;
+            userId = 2;
+            yyPrice = 0;
+        };
+        "is_friend" = 1;
+        tag =         (
+        );
+        user =         {
+            "add_time" = 1468035948000;
+            "del_flag" = 1;
+            headimgurl = "http://o8e2ot0ig.bkt.clouddn.com/4169bb44-cf44-440e-9ea7-3cae7aed32be";
+            "nick_name" = nickname1;
+            phone = 15110002110;
+            "real_name" = "\U82cf\U5bcc\U541b";
+            sex = 1;
+            uid = 2;
+            "update_time" = 1468035950000;
+            "user_type" = "";
+            ustatus = 1;
+        };
+    };
+    message = "\U6210\U529f";
+}
+</code></pre>
+
+<p> 问题描述:</p>
+
+<ol>
+<li>good字段应该返回商品的图片url数组</li>
+<li>未返回省市信息</li>
+</ol>
+
+
+<p> ——</p>
+
+<ul>
+<li>第二种情况</li>
+</ul>
+
+
+<p> 参数:</p>
+
+<pre><code>{
+  "f_uid" = 1;
+  uid = 2;
+}
+</code></pre>
+
+<p>返回值:</p>
+
+<pre><code> {
+        code = 1000;
+        data =     {
+            goods =         {
+                addTime = 1469374534000;
+                forwardTimes = 0;
+                goodsDesc = Davydavy;
+                goodsId = 0;
+                goodsName = ios;
+                goodsState = 1;
+                headImgurl = "http://o8e2ot0ig.bkt.clouddn.com/552fb887-cc18-40de-9487-b6c19cc33a4f";
+                id = 6;
+                isNewRecord = 0;
+                nickname = Davy;
+                price0 = 0;
+                price1 = 0;
+                price2 = 0;
+                price3 = 0;
+                price4 = 0;
+                price5 = 0;
+                price6 = 0;
+                salePrice = 1;
+                userId = 1;
+                yyPrice = 1;
+            };
+            "is_friend" = 0;
+            tag =         (
+            );
+            user =         {
+                "add_time" = 1468035948000;
+                city = "\U57ce\U5e02";
+                country = "\U56fd\U5bb6";
+                "del_flag" = 0;
+                headimgurl = "\U5934\U50cf";
+                "nick_name" = "\U6635\U79f0\U6635\U79f0\U6635\U79f0";
+                phone = 12345678901;
+                province = "\U7701\U4efd";
+                "real_name" = "\U51b0";
+                sex = "\U6027\U522b";
+                uid = 1;
+                "update_time" = 1468035950000;
+                "user_type" = "";
+                ustatus = 1;
+                yycode = "\U7528\U6237yy\U53f7";
+            };
+        };
+        message = "\U6210\U529f";
+}
+</code></pre>
+
+<p> 问题描述:</p>
+
+<ul>
+<li>good字段应该返回商品的图片url数组</li>
+<li>is_friend字段的值和第一种情况的值不同，1和2应互为好友，is_friend字段的值应该相同</li>
+<li>headimgurl值错误</li>
+<li>nick_name值错误</li>
+</ul>
+
+
+<hr />
+
+<h5>3.</h5>
+
+<p>接口:
+goods/delete</p>
+
+<p>参数:</p>
+
+<pre><code>{
+    "goods_id" = 6;
+    uid = 1;
+}
+</code></pre>
+
+<p>返回值:</p>
+
+<pre><code>{
+    code = 1000;
+    data =     {
+    };
+    message = "\U6210\U529f";
+}
+</code></pre>
+
+<p>问题描述:删除商品返回成功，但是刷新首页列表仍然能显示;将goods_id换成其他数字（如100）也会返回删除成功的提示</p>
+
+<hr />
+
+<h5>4.</h5>
+
+<p>接口: http://test.haiu.me/api/order/buy/query?uid=1&amp;pageNo=1&amp;pageSize=10</p>
+
+<p>参数：</p>
+
+<p>返回值:返回值太多 不列举</p>
+
+<p>问题描述: 返回的数据顺序不对,最近购买的数据应该在最前面,不知道/order/sell/query接口是否也有同样问题</p>
+
+<hr />
+
+<h5>5.</h5>
+
+<p>接口:order/sell/new</p>
+
+<p>参数:</p>
+
+<pre><code>{
+    pageNo = 1;
+    pageSize = 10;
+    uid = 2;
+}
+</code></pre>
+
+<p>返回值:</p>
+
+<pre><code>{
+    code = 1000;
+    data =     {
+        count = 0;
+        firstResult = 0;
+        list =         (
+        );
+        maxResults = 10;
+        pageNo = 1;
+        pageSize = 10;
+    };
+    message = "\U6210\U529f";
+}
+</code></pre>
+
+<p>问题描述:返回列表数据为空,刚刚用id为1的账户购买了2号的商品，此处应该返回有数据。提示只有商家调用order/sell/new接口时才能将订单的"是否被查询过"字段置为"已查询"</p>
+
+<h5>6.</h5>
+
+<p>接口:supplier/apply</p>
+
+<p>参数:</p>
+
+<pre><code>{
+    phone = 18715557716;
+    uid = 2;
+    "user_name" = Asd;
+}
+</code></pre>
+
+<p>返回值:</p>
+
+<pre><code>{
+    code = 1000;
+    data =     {
+    };
+    message = "\U6210\U529f";
+}
+</code></pre>
+
+<p>问题描述:
+多次提交之后仍然返回成功，登录接口要返回一个字段标识用户的供货商的状态，不是供货商，供货商身份正在审核中，审核通过,正在审核时不应该允许用户再次提交审核信息，我在前端判断一次，后台最好也要判断一次</p>
+
+<hr />
+
+<h5>7.</h5>
+
+<p>接口:express/add</p>
+
+<p>参数:</p>
+
+<pre><code>{
+    "express_company" = "\U7533\U901a\U5feb\U9012";
+    "express_id" = 2;
+    "price_model" =     (
+                {
+            fee = "12.00";
+            provice =             (
+                2,
+                1
+            );
+        },
+                {
+            fee = "23.00";
+            provice =             (
+                5,
+                6
+            );
+        }
+    );
+    uid = 2;
+}
+</code></pre>
+
+<p>返回值:</p>
+
+<pre><code> {
+    code = 7002;
+    data =     {
+    };
+    message = "\U67e5\U8be2\U9519\U8bef";
+}
+</code></pre>
+
+<p>问题描述: 提示查询错误</p>
+</body>
+</html>
