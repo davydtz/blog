@@ -1,0 +1,331 @@
+___
+#####1.
+
+接口:friend/query
+
+参数:
+
+    {
+       uid = 1;
+    }
+    
+    
+返回值:
+
+    {
+    code = 1000;
+    data =     (
+                {
+            "f_gid" = null;
+            "f_uid" = 2;
+            "forward_number" = 100;
+            "goods_number" = 200;
+            headimgurl = "\U5934\U50cf";
+            id = 30;
+            "nick_name" = "\U6635\U79f0\U6635\U79f0\U6635\U79f0";
+            uid = 1;
+        },
+                {
+            "f_gid" = null;
+            "f_uid" = 2;
+            "forward_number" = 100;
+            "goods_number" = 200;
+            headimgurl = "\U5934\U50cf";
+            id = 31;
+            "nick_name" = "\U6635\U79f0\U6635\U79f0\U6635\U79f0";
+            uid = 1;
+        },
+                {
+            "f_gid" = null;
+            "f_uid" = 2;
+            "forward_number" = 100;
+            "goods_number" = 200;
+            headimgurl = "\U5934\U50cf";
+            id = 32;
+            "nick_name" = "\U6635\U79f0\U6635\U79f0\U6635\U79f0";
+            uid = 1;
+        }
+    );
+    message = "\U6210\U529f";
+    }
+
+问题:
+
+返回的3条数据都是一样的，headimgurl值错误
+
+
+_____
+
+
+##### 2.
+
+接口：friend/query/detail
+
+* 第一种情况
+
+
+
+参数:
+
+    {
+      "f_uid" = 2;
+       uid = 1;
+    }
+    
+返回值:
+
+
+    {
+	    code = 1000;
+	    data =     {
+	        goods =         {
+	            addTime = 1469290887000;
+	            forwardTimes = 0;
+	            goodsDesc = "\U5475\U5475\U54c8";
+	            goodsId = 1;
+	            goodsName = ios;
+	            goodsState = 1;
+	            headImgurl = "http://wx.qlogo.cn/mmopen/UH5FTuNesVNnMxWIrcLJKya9ibyArtEv3GqO3SfQPcbECibjJRcSJfHaaT6hqyOibibFvwCDJK6KTZZCBbJXUwEsxRwkp3bRJFAy/0";
+	            id = 1;
+	            isNewRecord = 0;
+	            nickname = "will-\U4e07\U6210";
+	            price0 = 0;
+	            price1 = 0;
+	            price2 = 0;
+	            price3 = 0;
+	            price4 = 0;
+	            price5 = 0;
+	            price6 = 0;
+	            salePrice = 0;
+	            userId = 2;
+	            yyPrice = 0;
+	        };
+	        "is_friend" = 1;
+	        tag =         (
+	        );
+	        user =         {
+	            "add_time" = 1468035948000;
+	            "del_flag" = 1;
+	            headimgurl = "http://o8e2ot0ig.bkt.clouddn.com/4169bb44-cf44-440e-9ea7-3cae7aed32be";
+	            "nick_name" = nickname1;
+	            phone = 15110002110;
+	            "real_name" = "\U82cf\U5bcc\U541b";
+	            sex = 1;
+	            uid = 2;
+	            "update_time" = 1468035950000;
+	            "user_type" = "";
+	            ustatus = 1;
+	        };
+	    };
+	    message = "\U6210\U529f";
+    }
+    
+ 问题描述:
+ 
+ 1. good字段应该返回商品的图片url数组
+ 2. 未返回省市信息 
+ 
+ ——
+ 
+ * 第二种情况
+ 
+ 参数:
+
+    {
+      "f_uid" = 1;
+      uid = 2;
+    }
+    
+返回值:
+
+
+     {
+		    code = 1000;
+		    data =     {
+		        goods =         {
+		            addTime = 1469374534000;
+		            forwardTimes = 0;
+		            goodsDesc = Davydavy;
+		            goodsId = 0;
+		            goodsName = ios;
+		            goodsState = 1;
+		            headImgurl = "http://o8e2ot0ig.bkt.clouddn.com/552fb887-cc18-40de-9487-b6c19cc33a4f";
+		            id = 6;
+		            isNewRecord = 0;
+		            nickname = Davy;
+		            price0 = 0;
+		            price1 = 0;
+		            price2 = 0;
+		            price3 = 0;
+		            price4 = 0;
+		            price5 = 0;
+		            price6 = 0;
+		            salePrice = 1;
+		            userId = 1;
+		            yyPrice = 1;
+		        };
+		        "is_friend" = 0;
+		        tag =         (
+		        );
+		        user =         {
+		            "add_time" = 1468035948000;
+		            city = "\U57ce\U5e02";
+		            country = "\U56fd\U5bb6";
+		            "del_flag" = 0;
+		            headimgurl = "\U5934\U50cf";
+		            "nick_name" = "\U6635\U79f0\U6635\U79f0\U6635\U79f0";
+		            phone = 12345678901;
+		            province = "\U7701\U4efd";
+		            "real_name" = "\U51b0";
+		            sex = "\U6027\U522b";
+		            uid = 1;
+		            "update_time" = 1468035950000;
+		            "user_type" = "";
+		            ustatus = 1;
+		            yycode = "\U7528\U6237yy\U53f7";
+		        };
+		    };
+		    message = "\U6210\U529f";
+    }
+    
+ 问题描述:
+
+ * good字段应该返回商品的图片url数组
+ * is_friend字段的值和第一种情况的值不同，1和2应互为好友，is_friend字段的值应该相同
+ * headimgurl值错误
+ *  nick_name值错误
+ 
+ ___
+ 
+ 
+##### 3.
+接口:
+goods/delete
+
+参数:
+
+	{
+	    "goods_id" = 6;
+	    uid = 1;
+	}
+	
+返回值:
+
+	{
+	    code = 1000;
+	    data =     {
+	    };
+	    message = "\U6210\U529f";
+	}
+	
+问题描述:删除商品返回成功，但是刷新首页列表仍然能显示;将goods_id换成其他数字（如100）也会返回删除成功的提示
+
+___
+
+
+##### 4.
+
+接口: http://test.haiu.me/api/order/buy/query?uid=1&pageNo=1&pageSize=10
+
+参数：
+
+返回值:返回值太多 不列举
+
+问题描述: 返回的数据顺序不对,最近购买的数据应该在最前面,不知道/order/sell/query接口是否也有同样问题
+
+___
+
+##### 5.
+接口:order/sell/new
+
+参数:
+
+	{
+	    pageNo = 1;
+	    pageSize = 10;
+	    uid = 2;
+	}
+
+返回值:
+
+	{
+	    code = 1000;
+	    data =     {
+	        count = 0;
+	        firstResult = 0;
+	        list =         (
+	        );
+	        maxResults = 10;
+	        pageNo = 1;
+	        pageSize = 10;
+	    };
+	    message = "\U6210\U529f";
+	}
+	
+问题描述:返回列表数据为空,刚刚用id为1的账户购买了2号的商品，此处应该返回有数据。提示只有商家调用order/sell/new接口时才能将订单的"是否被查询过"字段置为"已查询"
+
+
+
+##### 6.
+接口:supplier/apply
+
+参数:
+
+	{
+	    phone = 18715557716;
+	    uid = 2;
+	    "user_name" = Asd;
+	}
+	
+返回值:
+
+	{
+	    code = 1000;
+	    data =     {
+	    };
+	    message = "\U6210\U529f";
+	}
+	
+问题描述:
+多次提交之后仍然返回成功，登录接口要返回一个字段标识用户的供货商的状态，不是供货商，供货商身份正在审核中，审核通过,正在审核时不应该允许用户再次提交审核信息，我在前端判断一次，后台最好也要判断一次
+
+___
+
+##### 7.
+接口:express/add
+
+参数:
+
+	{
+	    "express_company" = "\U7533\U901a\U5feb\U9012";
+	    "express_id" = 2;
+	    "price_model" =     (
+	                {
+	            fee = "12.00";
+	            provice =             (
+	                2,
+	                1
+	            );
+	        },
+	                {
+	            fee = "23.00";
+	            provice =             (
+	                5,
+	                6
+	            );
+	        }
+	    );
+	    uid = 2;
+	}
+	
+返回值:
+
+	 {
+	    code = 7002;
+	    data =     {
+	    };
+	    message = "\U67e5\U8be2\U9519\U8bef";
+	}
+	
+	
+问题描述: 提示查询错误
